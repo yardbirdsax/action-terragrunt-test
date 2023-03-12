@@ -1,0 +1,17 @@
+name: Test workflow
+on:
+  repository_dispatch:
+    types:
+      - integration-test
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: action-terragrunt
+        uses: yardbirdsax/action-terragrunt@feature/initial
+        with:
+          base-directory: terragrunt/test
+          terraform-command: plan
